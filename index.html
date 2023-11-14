@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+    <main>
+
+
+
+        <h1>Калкулатор</h1>
+        <div class="container">
+
+            <div class="block block1"><input class="inpt" value="0" disabled type="text"></div>
+            <div class="block block2">C</div>
+            <div class="block block3">/</div>
+            <div class="block block4">7</div>
+            <div class="block block5">8</div>
+            <div class="block block6">9</div>
+            <div class="block block7">*</div>
+            <div class="block block8">4</div>
+            <div class="block block9">5</div>
+            <div class="block block10">6</div>
+            <div class="block block11">-</div>
+            <div class="block block12">1</div>
+            <div class="block block13">2</div>
+            <div class="block block14">3</div>
+            <div class="block block15">+</div>
+            <div class="block block16">0</div>
+            <div class="block block17">.</div>
+            <div class="block block18">=</div>
+
+        </div>
+
+    </main>
+    <script>
+
+
+        var inpt = document.querySelector('.inpt');
+        var flag = 0;
+
+
+        const blokovi = document.querySelectorAll('.block');
+
+        blokovi.forEach(
+            (x) => {
+                x.addEventListener('click', () => {
+                    if (x.innerHTML == 'C') {
+                        inpt.value = '0';
+                        newValue = true;
+                    }
+
+                    else if (x.innerHTML == '=') {
+                        inpt.value = (eval(inpt.value));
+                        if (inpt.value.length > 7) {
+                            inpt.value = inpt.value.slice(0, 7);
+                        }
+                        flag = 1;
+                    }
+
+                    else {
+
+                        if (inpt.value == '0') {
+                            inpt.value = '';
+                        }
+
+                        if (flag == 1) {
+
+                            if (!isNaN(x.innerHTML)) {
+                                inpt.value = x.innerHTML;
+                            }
+                            else {
+                                inpt.value += x.innerHTML;
+                            }
+                            flag = 0;
+                        }
+
+                        else {
+                            inpt.value += x.innerHTML;
+                        }
+
+                    }
+                })
+            }
+
+        )
+
+
+    </script>
+</body>
+
+</html>
